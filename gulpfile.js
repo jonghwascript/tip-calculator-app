@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass')(require('sass'));
 const sourcemaps = require('gulp-sourcemaps');
-const cleanCSS = require('gulp-clean-css'); // CSS 압축용
 
 // 포맷 대상 파일
 const PRETTIER_GLOBS = ['src/scss/**/*.scss', '*.html', 'gulpfile.js'];
@@ -9,9 +8,9 @@ const PRETTIER_GLOBS = ['src/scss/**/*.scss', '*.html', 'gulpfile.js'];
 // SCSS → CSS 변환
 function scssTask() {
   return gulp
-    .src('src/scss/**/*.scss') // SCSS 위치
+    .src('src/scss/style.scss') // SCSS 진입점
     .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError)) // SCSS 변환
+    .pipe(sass()) // 컴파일 오류 시 빌드 실패
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('css')); // CSS 출력 위치
 }
@@ -35,6 +34,7 @@ function watchTask() {
 }
 
 exports.prettier = prettierTask;
+exports.build = scssTask;
 
 // 기본 태스크
-exports.default = gulp.series(prettierTask, scssTask, watchTask);
+exports.default = gulp.series(scssTask, watchTask);

@@ -1,10 +1,11 @@
 {
-  "name": "newsletter-sign-up-with-success-message",
+  "name": "tip-calculator-app",
   "version": "1.0.0",
-  "description": "![Design preview for the Newsletter sign-up form with success message coding challenge](./preview.jpg)",
-  "main": "index.js",
+  "description": "Frontend Mentor tip calculator app scaffold with HTML and SCSS",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "gulp",
+    "build": "gulp build",
+    "check": "prettier --check index.html \"src/scss/**/*.scss\" gulpfile.js package.json",
     "format": "gulp prettier"
   },
   "keywords": [],

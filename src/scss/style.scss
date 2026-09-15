@@ -1,22 +1,130 @@
-@use 'fonts'as *;
-@use 'reset'as *;
-@use 'variables'as v;
-@use 'mixins'as m; // _mixins.scss 파일이 같은 폴더에 있는 경우
-
-button:focus-visible {
-  outline: 2px solid var(--Grey-500);
-  outline-offset: 2px;
-}
+@use 'reset';
+@use 'fonts';
+@use 'variables' as v;
 
 body {
-  @include m.font-style(16px, 400, 1);
-  background-color: #fff;
+  background: v.$grey-200;
+  color: v.$grey-500;
+  line-height: 1.5;
 }
-
-// 컨텐츠 가운데 정렬 + 최대폭 wrapper. 챌린지마다 max-width 값만 바꿔서 쓴다.
-.container {
-  @include m.container(1110px, 24px);
+.calculator {
+  background: v.$white;
+  border-radius: 24px;
 }
-
-// tablet/desktop에서 레이아웃 구조 자체가 바뀔 때(예: flex-direction, grid-template-columns)는
-// @include m.mq('tablet') { ... } 처럼 각 셀렉터 안에서 사용한다.
+.field__input {
+  min-height: 48px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  padding: 4px 16px;
+  background: v.$grey-50;
+  color: v.$green-900;
+  font-size: v.$font-size-input;
+  text-align: right;
+  appearance: textfield;
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+  &::placeholder {
+    color: v.$grey-500;
+    opacity: 1;
+  }
+  &:focus-visible {
+    outline: 2px solid v.$green-400;
+    outline-offset: 2px;
+  }
+  &--bill,
+  &--people {
+    padding-left: 40px;
+    background-repeat: no-repeat;
+    background-position: 16px center;
+  }
+  &--bill {
+    background-image: url('../images/icon-dollar.svg');
+  }
+  &--people {
+    background-image: url('../images/icon-person.svg');
+  }
+}
+.tip-options {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  legend {
+    padding: 0;
+  }
+}
+.tip-option {
+  position: relative;
+  input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+  span {
+    display: inline-block;
+    text-align: center;
+    min-height: 48px;
+    border-radius: 5px;
+    background: v.$green-900;
+    color: v.$white;
+    font-size: v.$font-size-input;
+    cursor: pointer;
+  }
+  &:hover span {
+    background: v.$grey-200;
+    color: v.$green-900;
+  }
+  input:checked + span {
+    background: v.$green-400;
+    color: v.$green-900;
+  }
+  input:focus-visible + span {
+    outline: 2px solid v.$green-900;
+    outline-offset: 3px;
+  }
+}
+.tip-options__custom {
+  padding-inline: 4px;
+  text-align: center;
+}
+.results {
+  border-radius: 15px;
+  background: v.$green-900;
+}
+.results__row {
+  p {
+    color: v.$white;
+  }
+  span {
+    display: block;
+    color: v.$grey-200;
+    font-size: 13px;
+  }
+  output {
+    color: v.$green-400;
+    font-size: 32px;
+    overflow-wrap: anywhere;
+  }
+}
+.results__reset {
+  min-height: 48px;
+  border-radius: 5px;
+  background: v.$green-400;
+  color: v.$green-900;
+  font-size: 20px;
+  text-transform: uppercase;
+  &:hover {
+    background: v.$grey-200;
+  }
+}
+.attribution {
+  color: v.$green-900;
+  font-size: 11px;
+  a {
+    text-decoration: underline;
+  }
+}

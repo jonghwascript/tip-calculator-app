@@ -1,21 +1,226 @@
-@font-face {
-  font-family: Roboto, sans-serif;
-  src: url(../../fonts/Roboto-Regular.ttf) format("woff2");
+.space-mono-regular {
+  font-family: "Space Mono", monospace;
   font-weight: 400;
   font-style: normal;
-  font-display: swap
 }
 
-@font-face {
-  font-family: Roboto, sans-serif;
-  src: url(../../fonts/Roboto-Bold.ttf) format("woff2");
+.space-mono-bold {
+  font-family: "Space Mono", monospace;
   font-weight: 700;
   font-style: normal;
-  font-display: swap
 }
 
 body {
-  font-family: Arial, sans-serif
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
 }
 
+/* =========================
+   Reset
+   ========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+button:focus-visible {
+  outline: 2px solid hsl(172, 67%, 45%);
+  outline-offset: 2px;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  background: hsl(185, 41%, 84%);
+  color: hsl(186, 14%, 43%);
+  line-height: 1.5;
+}
+
+.calculator {
+  background: hsl(0, 100%, 100%);
+  border-radius: 24px;
+}
+
+.field__input {
+  min-height: 48px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  padding: 4px 16px;
+  background: hsl(189, 47%, 97%);
+  color: hsl(183, 100%, 15%);
+  font-size: 24px;
+  text-align: right;
+  appearance: textfield;
+}
+.field__input::-webkit-inner-spin-button, .field__input::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+.field__input::placeholder {
+  color: hsl(186, 14%, 43%);
+  opacity: 1;
+}
+.field__input:focus-visible {
+  outline: 2px solid hsl(172, 67%, 45%);
+  outline-offset: 2px;
+}
+.field__input--bill, .field__input--people {
+  padding-left: 40px;
+  background-repeat: no-repeat;
+  background-position: 16px center;
+}
+.field__input--bill {
+  background-image: url("../images/icon-dollar.svg");
+}
+.field__input--people {
+  background-image: url("../images/icon-person.svg");
+}
+
+.tip-options {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.tip-options legend {
+  padding: 0;
+}
+
+.tip-option {
+  position: relative;
+}
+.tip-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+.tip-option span {
+  display: inline-block;
+  text-align: center;
+  min-height: 48px;
+  border-radius: 5px;
+  background: hsl(183, 100%, 15%);
+  color: hsl(0, 100%, 100%);
+  font-size: 24px;
+  cursor: pointer;
+}
+.tip-option:hover span {
+  background: hsl(185, 41%, 84%);
+  color: hsl(183, 100%, 15%);
+}
+.tip-option input:checked + span {
+  background: hsl(172, 67%, 45%);
+  color: hsl(183, 100%, 15%);
+}
+.tip-option input:focus-visible + span {
+  outline: 2px solid hsl(183, 100%, 15%);
+  outline-offset: 3px;
+}
+
+.tip-options__custom {
+  padding-inline: 4px;
+  text-align: center;
+}
+
+.results {
+  border-radius: 15px;
+  background: hsl(183, 100%, 15%);
+}
+
+.results__row p {
+  color: hsl(0, 100%, 100%);
+}
+.results__row span {
+  display: block;
+  color: hsl(185, 41%, 84%);
+  font-size: 13px;
+}
+.results__row output {
+  color: hsl(172, 67%, 45%);
+  font-size: 32px;
+  overflow-wrap: anywhere;
+}
+
+.results__reset {
+  min-height: 48px;
+  border-radius: 5px;
+  background: hsl(172, 67%, 45%);
+  color: hsl(183, 100%, 15%);
+  font-size: 20px;
+  text-transform: uppercase;
+}
+.results__reset:hover {
+  background: hsl(185, 41%, 84%);
+}
+
+.attribution {
+  color: hsl(183, 100%, 15%);
+  font-size: 11px;
+}
+.attribution a {
+  text-decoration: underline;
+}
 /*# sourceMappingURL=style.css.map */

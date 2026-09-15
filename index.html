@@ -1,73 +1,72 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- displays site properly based on user's device -->
 
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./images/favicon-32x32.png"
-    />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
 
-    <title>
-      Frontend Mentor | Newsletter sign-up form with success message
-    </title>
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | Tip calculator app</title>
 
-    <link rel="stylesheet" href="./css/style.css">
-    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-    <style>
-      .attribution {
-        font-size: 0.6875rem;
-        text-align: center;
-      }
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution {
+      font-size: 0.6875rem;
+      text-align: center;
+    }
 
-      .attribution a {
-        color: hsl(228, 45%, 44%);
-      }
-    </style>
-  </head>
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+  </style>
+</head>
 
-  <body>
-    <main>
-      <section aria-labelledby="newsletter-title">
-        <picture>
-          <source
-            srcset="./images/illustration-sign-up-tablet.svg"
-            media="(min-width: 768px)"
-          />
-          <source
-            srcset="./images/illustration-sign-up-desktop.svg"
-            media="(min-width: 1024px)"
-          />
-          <img src="./images/illustration-sign-up-mobile.svg" alt="" />
-        </picture>
-        <div class="newsletter">
-          <h1 id="newsletter-title">Stay updated!</h1>
-          <p>Join 60,000+ product managers receiving monthly updates on:</p>
-          <ul>
-            <li>Product discovery and building what matters</li>
-            <li>Measuring to ensure updates are a success</li>
-            <li>And much more!</li>
-          </ul>
-          <div>
-            <label>Email address</label>
-            <input type="text" name="" id="" placeholder="email@company.com" />
-          </div>
-          <button>Subscribe to monthly newsletter</button>
-        </div>
-      </section>
-    </main>
+<body>
+  <main class="container">
+    <h1 class="title">
+      <img src="./images/logo.svg" alt="Splitter">
+    </h1>
+    <form action="" class="calculator__form">
+      <label for="bill">Bill</label>
+      <input type="number" id="bill">
+      <!-- 웹 폼(양식) 관련 컨트롤 요소와 레이블(<label> 태그로 만든 이름표)을 그룹화해서 묶은 세트 -->
+      <fieldset>
+        <!-- 부모 요소인 <fieldset> 태그로 그룹화해서 세트로 묶은 요소들에 대한 캡션(간단한 제목이나 설명)을 나타내기 위해 사용하는 태그 -->
+        <legend>Select Tip %</legend>
+        <ul>
+          <li><label><input type="radio" name="tip" value="5">5%</label></li>
+          <li><label><input type="radio" name="tip" value="10">10%</label></li>
+          <li><label><input type="radio" name="tip" value="15">15%</label></li>
+          <li><label><input type="radio" name="tip" value="25">25%</label></li>
+          <li><label><input type="radio" name="tip" value="50">50%</label></li>
+          <li><label><input type="radio" name="tip" value="custom">50%</label></li>
+        </ul>
+      </fieldset>
 
-    <footer class="attribution">
-      Challenge by
-      <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
-      Coded by
-      <a href="https://www.frontendmentor.io/profile/jonghwascript"
-        >jonghwascript</a
-      >.
-    </footer>
-  </body>
+    </form>
+    <section class="calculator__result">
+      <div class="output-tip">
+        <span>Tip Amount</span><span>/ person</span>
+        <!-- 웹 애플리케이션이 수행한 계산 결과나 사용자의 웹 폼(양식) 관련 컨트롤 요소를 통한 다양한 상호작용의 결과에 대한 출력(output)을 나타냅니다  -->
+        <output class="tip"></output>
+      </div>
+      <div class="output-result">
+        <span>Total</span><span>/ person</span>
+        <output class="result"></output>
+      </div>
+      <button value="reset">Reset</button>
+    </section>
+  </main>
+
+
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
+    Coded by <a href="https://www.frontendmentor.io/profile/jonghwascript">jonghwascript</a>.
+  </footer>
+</body>
+
 </html>

@@ -1,17 +1,19 @@
-@charset "UTF-8";
+@use 'variables' as v;
 
-@font-face {
-  font-family: 'Roboto', sans-serif;
-  src: url('../../fonts/Roboto-Regular.ttf') format('woff2');
+.space-mono-regular {
+  font-family: "Space Mono", monospace;
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
 }
 
-@font-face {
-  font-family: 'Roboto', sans-serif;
-  src: url('../../fonts/Roboto-Bold.ttf') format('woff2');
+.space-mono-bold {
+  font-family: "Space Mono", monospace;
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+}
+
+// Space Mono 700 is loaded in index.html.
+body {
+  font-family: v.$font-primary;
+  font-weight: 700;
 }
