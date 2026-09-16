@@ -106,7 +106,7 @@ table {
 }
 
 html {
-  font-size: min(16px, 4.2666667vw);
+  font-size: min(1rem, 4.2666667vw);
 }
 
 body {
@@ -126,20 +126,29 @@ body {
   }
 }
 
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 .container {
   width: 100%;
 }
 .container .title {
   margin-block-start: 3.125rem;
 }
-.container .title img {
+.container .title .hero-logo {
   width: 5.4375rem;
   max-width: 100%;
   height: auto;
   margin-inline: auto;
 }
 .container .calculator {
-  width: min(375px, 100%);
+  width: min(23.4375rem, 100%);
   margin-block-start: 2.5rem;
   margin-inline: auto;
   background-color: hsl(0, 100%, 100%);
@@ -165,11 +174,12 @@ body {
 }
 @media (min-width: 1024px) {
   .container .calculator {
+    margin-block-start: 5.4912rem;
     width: 100%;
-    max-width: 920px;
+    max-width: 57.5rem;
     padding: 2rem 2.5rem;
     flex-direction: row;
-    gap: 48px;
+    gap: 3rem;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
 }
@@ -204,7 +214,7 @@ body {
 .input-group::after {
   content: "";
   position: absolute;
-  margin-left: 18.58px;
+  margin-left: 1.1612rem;
   top: 50%;
   left: 0;
   transform: translateY(-28%);
@@ -218,9 +228,28 @@ body {
   background-image: url("../images/icon-person.svg");
 }
 
-.container .calculator__form label[for=bill],
-.container .calculator__form label[for=people] {
+.container .calculator__form .label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container .calculator__form .label-row label[for=bill],
+.container .calculator__form .label-row label[for=people] {
   display: block;
+}
+.container .calculator__form .label-row .error {
+  font-family: "Space Mono", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #E17052;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+.container .calculator__form .label-row .error.active {
+  opacity: 1;
+  visibility: visible;
 }
 .container .calculator__form input[type=number] {
   min-width: 0;
@@ -239,7 +268,7 @@ body {
 }
 .container .calculator__form fieldset {
   min-inline-size: 0;
-  margin: 32px 0 0 0;
+  margin: 2rem 0 0 0;
   border: 0;
   padding: 0;
 }
@@ -294,6 +323,7 @@ body {
   font-weight: 700;
   line-height: 1.5;
   color: white;
+  border: 1px solid transparent;
 }
 .container .calculator__form fieldset ul li label.c__gray_50 {
   background-color: hsl(189, 47%, 97%);
@@ -303,8 +333,21 @@ body {
   background-color: hsl(172, 67%, 45%);
   color: hsl(183, 100%, 15%);
 }
-.container .calculator__form label[for=people] {
-  margin-block-start: 32px;
+.container .calculator__form fieldset input[name=custom] {
+  border: 0;
+  padding: 0.5rem 1rem;
+  padding-left: 0;
+  background-color: hsl(189, 47%, 97%);
+}
+.container .calculator__form fieldset input[name=custom]::placeholder {
+  font-family: "Space Mono", monospace;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #547878;
+}
+.container .calculator__form .label-row:has(label[for=people]) {
+  margin-block-start: 2rem;
 }
 .container .calculator__result {
   background-color: hsl(183, 100%, 15%);
@@ -327,13 +370,20 @@ body {
   align-items: center;
   justify-content: space-between;
 }
-.container .calculator__result .output-tip span:first-child,
-.container .calculator__result .output-result span:first-child {
+.container .calculator__result .output-tip .text-group p,
+.container .calculator__result .output-result .text-group p {
+  font-family: "Space Mono", monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
   color: hsl(0, 100%, 100%);
-  display: block;
 }
-.container .calculator__result .output-tip span:last-child,
-.container .calculator__result .output-result span:last-child {
+.container .calculator__result .output-tip .text-group span,
+.container .calculator__result .output-result .text-group span {
+  font-family: "Space Mono", monospace;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1;
   color: hsl(184, 14%, 56%);
 }
 .container .calculator__result .output-tip output,
@@ -355,19 +405,22 @@ body {
   }
 }
 .container .calculator__result .output-result {
-  margin-block-start: 24px;
+  margin-block-start: 1.5rem;
 }
 .container .calculator__result .reset-btn {
-  margin-block-start: 32px;
+  margin-block-start: 2rem;
   width: 100%;
   border-radius: 0.5rem;
   font-family: "Space Mono", monospace;
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1;
-  background-color: hsl(172, 67%, 45%);
+  color: #085C61;
+  background-color: #0D686D;
   text-transform: uppercase;
   padding-block: 0.875rem;
+  border: 1px solid transparent;
+  transition: 0.3s;
   /* 맵에 해당 기기 이름이 있는지 확인 */
   /* 🌟 min-width 기준으로 미디어 쿼리 자동 생성 */
 }
@@ -376,6 +429,13 @@ body {
     margin-block-start: auto;
     /* 믹스인을 호출할 때 전달한 스타일이 여기에 쏙 들어갑니다 */
   }
+}
+.container .calculator__result .reset-btn.active {
+  color: hsl(183, 100%, 15%);
+  background-color: hsl(172, 67%, 45%);
+}
+.container .calculator__result .reset-btn:hover {
+  background-color: #9FE8DF;
 }
 
 .attribution {
