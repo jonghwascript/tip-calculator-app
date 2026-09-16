@@ -201,6 +201,7 @@ input[type='number'] {
           padding: 0;
           margin: 0;
 
+          //sr-only로 Custom label을 시각적으로 숨기기 위해.
           label:has(input[name='tip']) {
             display: flex;
             justify-content: center;
@@ -224,6 +225,7 @@ input[type='number'] {
               color: v.$green-900;
             }
 
+            //리뷰: 팁 레이블과 사용자 지정 입력란에 마우스 오버 규칙을 추가하고, 선택된 상태를 시각적으로 구분
             &:has(input[name=tip]:checked) {
               background-color: v.$green-400;
               color: v.$green-900;
@@ -231,6 +233,8 @@ input[type='number'] {
               outline-offset: 2px;
             }
 
+            //:focus-visible은 사용자에게 시각적 포커스 표시가 꼭 필요하다고 판단될 때에만 선택
+            //사용자가 키보드(Tab 키)로 이동할 때만 포커스 테두리를 보여주고, 마우스나 터치로 클릭할 때는 테두리를 숨기고 싶을 때
             &:has(input[name=tip]:focus-visible) {
               outline: 3px dashed v.$green-900;
               outline-offset: 4px;
