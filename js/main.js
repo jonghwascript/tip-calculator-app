@@ -44,25 +44,31 @@ tipRadio
   });
 
 function isValid() {
-  if (!bill.val() || Number(bill.val()) <= 0) {
-    $('label[for=bill] + .error').addClass('active');
-    return false;
+  const billAmount = Number(bill.val());
+  const peopleCount = Number(people.val());
+
+  const billValid = Number.isFinite(billAmount) && billAmount > 0;
+  const peopleValid = Number.isInteger(peopleCount) && peopleCount > 0;
+
+  $('#bill-error').toggleClass('active', !billValid);
+  $('#people-error').toggleClass('active', !peopleValid);
+
+  bill.attr('aria-invalid', String(!billValid));
+  people.attr('aria-invalid', String(!peopleValid));
+
+  if (billValid) {
+    bill.removeAttr('aria-describedby');
   } else {
-    $('label[for=bill] + .error').removeClass('active');
+    bill.attr('aria-describedby', 'bill-error');
   }
 
-  if (
-    !people.val() ||
-    Number(people.val()) <= 0 ||
-    !Number.isInteger(Number(people.val()))
-  ) {
-    $('label[for=people] + .error').addClass('active');
-    return false;
+  if (peopleValid) {
+    people.removeAttr('aria-describedby');
   } else {
-    $('label[for=people] + .error').removeClass('active');
+    people.attr('aria-describedby', 'people-error');
   }
 
-  return true;
+  return billValid && peopleValid;
 }
 
 resetBtn.on('click', resetFn);
@@ -77,6 +83,9 @@ function resetFn() {
 
   $('label[for=bill] + .error').removeClass('active');
   $('label[for=people] + .error').removeClass('active');
+
+  bill.add(people).attr('aria-invalid', 'false');
+  bill.add(people).removeAttr('aria-describedby');
 
   renderResult();
 }

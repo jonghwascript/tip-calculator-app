@@ -25,6 +25,7 @@ body {
 }
 
 input[type='number'] {
+
   // Chrome, Edge, Safari
   &::-webkit-inner-spin-button,
   &::-webkit-outer-spin-button {
@@ -69,7 +70,7 @@ input[type='number'] {
     }
 
     @include m.mq('desktop') {
-      margin-block-start: 5.4912rem;  //87.86px
+      margin-block-start: 5.4912rem; //87.86px
       width: 100%;
       max-width: 57.5rem; //920px
       padding: 2rem 2.5rem; //32px 40px
@@ -125,13 +126,18 @@ input[type='number'] {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
 
       label[for=bill],
       label[for=people] {
+        flex-shrink: 0;
+        white-space: nowrap;
         display: block;
       }
 
       .error {
+        margin-inline-start: auto;
         @include m.font-style(1rem, 700, 1);
         color: v.$orange-400;
         opacity: 0;
@@ -195,7 +201,7 @@ input[type='number'] {
           padding: 0;
           margin: 0;
 
-          label {
+          label:has(input[name='tip']) {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -213,13 +219,27 @@ input[type='number'] {
               color: v.$grey-500;
             }
 
+            &:hover {
+              background-color: v.$green-200;
+              color: v.$green-900;
+            }
+
             &:has(input[name=tip]:checked) {
               background-color: v.$green-400;
               color: v.$green-900;
+              outline: 2px solid v.$green-900;
+              outline-offset: 2px;
+            }
+
+            &:has(input[name=tip]:focus-visible) {
+              outline: 3px dashed v.$green-900;
+              outline-offset: 4px;
             }
           }
         }
-      } // end ul 
+      }
+
+      // end ul 
 
       input[name=custom] {
         border: 0;
@@ -227,9 +247,13 @@ input[type='number'] {
         padding-left: 0;
         background-color: v.$grey-50;
 
-        &::placeholder{
+        &::placeholder {
           @include m.font-style(1.5rem, 700, 1.5);
           color: v.$grey-550;
+        }
+
+        &:hover {
+          box-shadow: inset 0 0 0 2px v.$green-400;
         }
       }
     }

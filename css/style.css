@@ -232,12 +232,17 @@ input[type=number] {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 .container .calculator__form .label-row label[for=bill],
 .container .calculator__form .label-row label[for=people] {
+  flex-shrink: 0;
+  white-space: nowrap;
   display: block;
 }
 .container .calculator__form .label-row .error {
+  margin-inline-start: auto;
   font-family: "Space Mono", monospace;
   font-size: 1rem;
   font-weight: 700;
@@ -310,7 +315,7 @@ input[type=number] {
   padding: 0;
   margin: 0;
 }
-.container .calculator__form fieldset ul li label {
+.container .calculator__form fieldset ul li label:has(input[name=tip]) {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -325,13 +330,23 @@ input[type=number] {
   color: white;
   border: 1px solid transparent;
 }
-.container .calculator__form fieldset ul li label.c__gray_50 {
+.container .calculator__form fieldset ul li label:has(input[name=tip]).c__gray_50 {
   background-color: hsl(189, 47%, 97%);
   color: hsl(186, 14%, 43%);
 }
-.container .calculator__form fieldset ul li label:has(input[name=tip]:checked) {
+.container .calculator__form fieldset ul li label:has(input[name=tip]):hover {
+  background-color: #9FE8DF;
+  color: hsl(183, 100%, 15%);
+}
+.container .calculator__form fieldset ul li label:has(input[name=tip]):has(input[name=tip]:checked) {
   background-color: hsl(172, 67%, 45%);
   color: hsl(183, 100%, 15%);
+  outline: 2px solid hsl(183, 100%, 15%);
+  outline-offset: 2px;
+}
+.container .calculator__form fieldset ul li label:has(input[name=tip]):has(input[name=tip]:focus-visible) {
+  outline: 3px dashed hsl(183, 100%, 15%);
+  outline-offset: 4px;
 }
 .container .calculator__form fieldset input[name=custom] {
   border: 0;
@@ -345,6 +360,9 @@ input[type=number] {
   font-weight: 700;
   line-height: 1.5;
   color: #547878;
+}
+.container .calculator__form fieldset input[name=custom]:hover {
+  box-shadow: inset 0 0 0 2px hsl(172, 67%, 45%);
 }
 .container .calculator__form .label-row:has(label[for=people]) {
   margin-block-start: 2rem;
