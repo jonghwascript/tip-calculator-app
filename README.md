@@ -224,11 +224,23 @@ input[type='number'] {
 
 This changes the appearance of the controls; it does not disable keyboard arrow-key adjustments.
 
+#### Accessibility and interaction review
+
+The review identified missing interaction feedback, inconsistent initial currency formatting, and missing accessible labels and error associations. The following changes are now implemented:
+
+- Preset tip labels use a light green hover background, while checked options retain their distinct selected background.
+- The Custom input uses an inset outline effect on hover without changing its dimensions.
+- Selected tips have a solid outline, providing a cue beyond color. Keyboard focus uses a dashed outline on the associated label through `:has(input[name=tip]:focus-visible)`, even though the radio itself is visually hidden.
+- Both initial `output` values are `$0.00`, matching the two-decimal formatting used by `renderResult()`.
+- A visually hidden label is associated with the Custom input through `for="custom"`. Tip button styles target only labels containing a tip radio, so they do not override this hidden label's dimensions.
+- Bill and People error messages have unique IDs. Validation sets `aria-invalid` and connects each invalid input to its message through `aria-describedby`. Correcting the input removes the association, and Reset clears both fields' error states and associations.
+- Validation updates both field error states on every pass. Field labels no longer shrink to make room for error text; narrow-screen wrapping still needs visual verification.
+
+JavaScript syntax and SCSS compilation checks passed, and the generated CSS matches the SCSS source. Browser verification was blocked by a browser-tool connection error, so these checks do not establish screen-reader behavior, keyboard usability, or visual layout correctness. A trailing-space warning remains in an SCSS comment.
+
 ### Continued development
 
-- Add an explicit label for the Custom field and a visible keyboard focus state for tip options.
-- Improve validation messages so they explain negative amounts, fractional people, and invalid custom tips accurately.
-- Update both field error states on each validation pass instead of returning after the first invalid field.
+- Replace the People message, "Can't be zero", with wording that also explains negative and fractional values, and add clear feedback for invalid custom tips.
 - Check keyboard navigation, browser zoom, small-screen readability, and large result values in the browser.
 - Reduce deeply nested SCSS selectors and add behavior tests for tip switching, validation, and Reset.
 
